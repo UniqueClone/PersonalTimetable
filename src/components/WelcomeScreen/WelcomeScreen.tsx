@@ -2,6 +2,7 @@ import { PrimaryButton, Stack, Separator, Text, FontWeights, IStackStyles, IStac
 import React, { useState } from "react";
 import Calendar from "../Calendar/Calendar";
 import LoginDialog from "../LoginDialog/LoginDialog";
+import { LoginDialogProps } from "../LoginDialog/LoginDialogProps";
 import { getWelcomeScreenStyles } from "./WelcomeScreenStyles";
 
 export const WelcomeScreen: React.FC = () => {
@@ -15,7 +16,7 @@ export const WelcomeScreen: React.FC = () => {
         setVisible(!visible);
     };
 
-    const dialogProps = {
+    const dialogProps: LoginDialogProps = {
         hidden: visible,
         onDismiss: showDialog
     };
