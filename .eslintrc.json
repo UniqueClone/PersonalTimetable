@@ -3,23 +3,16 @@
         "browser": true,
         "es2021": true
     },
-    "extends": [
-        "eslint:recommended",
-        "plugin:@typescript-eslint/recommended",    
-        "react-app",
-        "prettier"
-    ],
-    "overrides": [
-    ],
+    "extends": ["eslint:recommended", "plugin:@typescript-eslint/recommended", "react-app", "prettier"],
+    "overrides": [],
     "parserOptions": {
         "ecmaVersion": "latest",
         "project": "./tsconfig.json",
         "sourceType": "module"
     },
-    "plugins": [
-        "react"
-    ],
+    "plugins": ["react"],
     "rules": {
-        "indent": "off"
+        "indent": "off",
+        "sort-imports": 2
     }
 }

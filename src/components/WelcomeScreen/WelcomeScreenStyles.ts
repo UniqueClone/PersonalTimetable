@@ -1,4 +1,3 @@
-
 import { Theme, mergeStyleSets } from "@fluentui/react";
 
 /**
@@ -8,6 +7,11 @@ import { Theme, mergeStyleSets } from "@fluentui/react";
  */
 export const getWelcomeScreenStyles = (theme?: Theme) => {
     return mergeStyleSets({
+        link: {
+            color: "white",
+            fontWeight: "600",
+            textDecoration: "none"
+        },
         separator: {
             minWidth: "50rem"
         }

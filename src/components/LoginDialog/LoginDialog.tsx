@@ -1,7 +1,6 @@
-import React from "react";
-
 import { DefaultButton, Dialog, DialogFooter, DialogType, PrimaryButton } from "@fluentui/react";
 import { LoginDialogProps } from "./LoginDialogProps";
+import React from "react";
 
 const LoginDialog: React.FC<LoginDialogProps> = props => {
     const dialogContentProps = {

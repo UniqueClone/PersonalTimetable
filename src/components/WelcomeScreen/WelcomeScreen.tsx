@@ -1,8 +1,9 @@
-import { PrimaryButton, Stack, Separator, Text, FontWeights, IStackStyles, IStackTokens, ITextStyles, Panel } from "@fluentui/react";
+import { FontWeights, IStackStyles, IStackTokens, ITextStyles, Panel, PrimaryButton, Separator, Stack, Text } from "@fluentui/react";
 import React, { useState } from "react";
-import Calendar from "../Calendar/Calendar";
+import { Link } from "react-router-dom";
 import LoginDialog from "../LoginDialog/LoginDialog";
 import { LoginDialogProps } from "../LoginDialog/LoginDialogProps";
+// import Timetable from "../Timetable/Timetable";
 import { getWelcomeScreenStyles } from "./WelcomeScreenStyles";
 
 export const WelcomeScreen: React.FC = () => {
@@ -29,6 +30,7 @@ export const WelcomeScreen: React.FC = () => {
         root: {
             width: "960px",
             margin: "0 auto",
+            paddingTop: "5rem",
             textAlign: "center",
             color: "#605e5c"
         }
@@ -59,7 +61,11 @@ export const WelcomeScreen: React.FC = () => {
                         <PrimaryButton onClick={showDialog} text={"Login / Sign Up"} />
                     </Stack.Item>
                     <Stack.Item grow>
-                        <PrimaryButton onClick={showPanel} text={"Calendar"} />
+                        <PrimaryButton>
+                            <Link className={styles.link} to="/timetable">
+                                Timetable
+                            </Link>
+                        </PrimaryButton>
                     </Stack.Item>
                 </Stack>
             </Stack.Item>
@@ -70,9 +76,9 @@ export const WelcomeScreen: React.FC = () => {
                 {"sdlkfnfnlk"}
             </Panel>
 
-            <div>
-                <Calendar />
-            </div>
+            {/* <div>
+                <Timetable />
+            </div> */}
         </Stack>
     );
 };
