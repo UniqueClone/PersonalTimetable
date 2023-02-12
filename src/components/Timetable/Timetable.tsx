@@ -3,7 +3,7 @@ import "./styles.css";
 import React, { useState } from "react";
 import { Table, Th, Thead, Tr } from "react-super-responsive-table";
 import { Cell } from "./Cell/Cell";
-import { Link } from "react-router-dom";
+import { NavBar } from "../NavBar/NavBar";
 import { Stack } from "@fluentui/react";
 import { getTimetableStyles } from "./TimetableStyles";
 
@@ -37,7 +37,7 @@ const Timetable: React.FC = () => {
     };
 
     const cellRow = () => {
-        return workweek.map(workweek => <Cell content={"Class on " + workweek} />);
+        return workweek.map(workweek => <Cell content={"Class on " + workweek} />); // TODO - replace with actual data
     };
 
     const getRows = () => {
@@ -50,40 +50,29 @@ const Timetable: React.FC = () => {
     };
 
     return (
-        <Stack horizontalAlign="center">
-            <Stack.Item>
-                <h1>Timetable</h1>
-            </Stack.Item>
-            <Stack.Item>
-                <Link to="/">Back to Home.</Link>
-            </Stack.Item>
-            <Stack.Item>
-                <h2>
-                    {weekdays[today.getDay()]} {today.getDate()} {months[today.getMonth()]} {today.getFullYear()}
-                </h2>
-            </Stack.Item>
-            <Stack.Item>
-                <Table className={styles.table}>
-                    <Thead className={styles.row}>
-                        <Tr>
-                            <Th className={styles.header}>Time</Th>
-                            {getWeekdayHeadings()}
-                        </Tr>
-                    </Thead>
-                    {getRows()}
-                </Table>
-            </Stack.Item>
-        </Stack>
-    );
-};
-
-export const Component1: React.FC = () => {
-    const [valueX, setValueX] = useState(0);
-
-    return (
         <>
-            <div>{valueX}</div>
-            <button onClick={() => setValueX(valueX + 1)}>Add 1 to valueX</button>
+            <NavBar />
+            <Stack horizontalAlign="center">
+                <Stack.Item>
+                    <h1>Timetable</h1>
+                </Stack.Item>
+                <Stack.Item>
+                    <h2>
+                        {weekdays[today.getDay()]} {today.getDate()} {months[today.getMonth()]} {today.getFullYear()}
+                    </h2>
+                </Stack.Item>
+                <Stack.Item>
+                    <Table className={styles.table}>
+                        <Thead className={styles.row}>
+                            <Tr>
+                                <Th className={styles.header}>Time</Th>
+                                {getWeekdayHeadings()}
+                            </Tr>
+                        </Thead>
+                        {getRows()}
+                    </Table>
+                </Stack.Item>
+            </Stack>
         </>
     );
 };
