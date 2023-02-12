@@ -2,7 +2,7 @@ export const msalConfig = {
     auth: {
         clientId: "3a56479a-a9db-4ded-b833-fcb96f49f414",
         authority: "https://login.microsoftonline.com/common",
-        redirectUri: "http://localhost:3000"
+        redirectUri: "https://personaltimetable.azurewebsites.net/"
     },
     cache: {
         cacheLocation: "sessionStorage", // This configures where your cache will be stored
