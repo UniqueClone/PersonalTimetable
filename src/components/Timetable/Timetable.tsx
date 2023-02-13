@@ -1,11 +1,13 @@
 import "./styles.css";
 
-import React, { useState } from "react";
+import React, { useEffect } from "react";
 import { Table, Th, Thead, Tr } from "react-super-responsive-table";
 import { Cell } from "./Cell/Cell";
 import { NavBar } from "../NavBar/NavBar";
 import { Stack } from "@fluentui/react";
 import { getTimetableStyles } from "./TimetableStyles";
+import { useIsAuthenticated } from "@azure/msal-react";
+import { useNavigate } from "react-router-dom";
 
 const Timetable: React.FC = () => {
     const weekdays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
@@ -49,30 +51,45 @@ const Timetable: React.FC = () => {
         ));
     };
 
+    const isAuthenticated = useIsAuthenticated();
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if (!isAuthenticated) {
+            navigate("/");
+        }
+    }, [isAuthenticated, navigate]);
+
     return (
         <>
-            <NavBar />
-            <Stack horizontalAlign="center">
-                <Stack.Item>
-                    <h1>Timetable</h1>
-                </Stack.Item>
-                <Stack.Item>
-                    <h2>
-                        {weekdays[today.getDay()]} {today.getDate()} {months[today.getMonth()]} {today.getFullYear()}
-                    </h2>
-                </Stack.Item>
-                <Stack.Item>
-                    <Table className={styles.table}>
-                        <Thead className={styles.row}>
-                            <Tr>
-                                <Th className={styles.header}>Time</Th>
-                                {getWeekdayHeadings()}
-                            </Tr>
-                        </Thead>
-                        {getRows()}
-                    </Table>
-                </Stack.Item>
-            </Stack>
+            {isAuthenticated ? (
+                <>
+                    <NavBar />
+                    <Stack horizontalAlign="center">
+                        <Stack.Item>
+                            <h1>Timetable</h1>
+                        </Stack.Item>
+                        <Stack.Item>
+                            <h2>
+                                {weekdays[today.getDay()]} {today.getDate()} {months[today.getMonth()]} {today.getFullYear()}
+                            </h2>
+                        </Stack.Item>
+                        <Stack.Item>
+                            <Table className={styles.table}>
+                                <Thead className={styles.row}>
+                                    <Tr>
+                                        <Th className={styles.header}>Time</Th>
+                                        {getWeekdayHeadings()}
+                                    </Tr>
+                                </Thead>
+                                {getRows()}
+                            </Table>
+                        </Stack.Item>
+                    </Stack>
+                </>
+            ) : (
+                <></>
+            )}
         </>
     );
 };
