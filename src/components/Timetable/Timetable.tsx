@@ -1,10 +1,13 @@
 import "./styles.css";
 
-import React, { useEffect } from "react";
+import { PrimaryButton, Separator, Stack, Text } from "@fluentui/react";
 import { Table, Th, Thead, Tr } from "react-super-responsive-table";
 import { Cell } from "./Cell/Cell";
+import { ClassesByTime } from "../../types/Classes";
 import { NavBar } from "../NavBar/NavBar";
-import { Stack } from "@fluentui/react";
+import React from "react";
+import ReactToPrint from "react-to-print";
+import { getMockClasses } from "../../Mocks/MockClasses";
 import { getTimetableStyles } from "./TimetableStyles";
 import { useIsAuthenticated } from "@azure/msal-react";
 import { useNavigate } from "react-router-dom";
@@ -12,6 +15,9 @@ import { useNavigate } from "react-router-dom";
 const Timetable: React.FC = () => {
     const weekdays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
     const workweek = ["Mon", "Tue", "Wed", "Thu", "Fri"];
+
+    // TODO replace with API call.
+    const classes: ClassesByTime = getMockClasses();
 
     const times = ["9.00", "10.00", "11.00", "12.00", "13.00", "14.00", "15.00", "16.00", "17.00", "18.00"];
 
@@ -30,7 +36,10 @@ const Timetable: React.FC = () => {
         "December"
     ];
 
+    const componentRef = React.useRef(null);
+
     const styles = getTimetableStyles();
+    const containerStackTokens = { childrenGap: 20 };
 
     const today = new Date();
 
@@ -38,15 +47,19 @@ const Timetable: React.FC = () => {
         return workweek.map(workweek => <Th className={styles.header}>{workweek}</Th>);
     };
 
-    const cellRow = () => {
-        return workweek.map(workweek => <Cell content={"Class on " + workweek} />); // TODO - replace with actual data
+    const cellRow = (classes: ClassesByTime, cur_time: string) => {
+        const cells: [JSX.Element] = [<></>];
+        Object.entries(classes[cur_time]).forEach(([key, value], index) => {
+            cells[index] = <Cell module={value.module} location={value.location} color={value.color} content={cur_time} />;
+        });
+        return cells ? cells : <></>;
     };
 
     const getRows = () => {
         return times.map(time => (
             <Tr className={styles.row}>
                 <Th>{time}</Th>
-                {cellRow()}
+                {cellRow(classes, time)}
             </Tr>
         ));
     };
@@ -54,41 +67,47 @@ const Timetable: React.FC = () => {
     const isAuthenticated = useIsAuthenticated();
     const navigate = useNavigate();
 
-    useEffect(() => {
-        if (!isAuthenticated) {
-            navigate("/");
-        }
-    }, [isAuthenticated, navigate]);
-
     return (
         <>
             {isAuthenticated ? (
                 <>
                     <NavBar />
-                    <Stack horizontalAlign="center">
+                    <Stack horizontalAlign="center" tokens={containerStackTokens}>
                         <Stack.Item>
-                            <h1>Timetable</h1>
+                            <Text variant="xxLarge">Timetable</Text>
                         </Stack.Item>
                         <Stack.Item>
-                            <h2>
+                            <Text variant="large">
+                                {"Today is: "}
                                 {weekdays[today.getDay()]} {today.getDate()} {months[today.getMonth()]} {today.getFullYear()}
-                            </h2>
+                            </Text>
                         </Stack.Item>
                         <Stack.Item>
-                            <Table className={styles.table}>
-                                <Thead className={styles.row}>
-                                    <Tr>
-                                        <Th className={styles.header}>Time</Th>
-                                        {getWeekdayHeadings()}
-                                    </Tr>
-                                </Thead>
-                                {getRows()}
-                            </Table>
+                            <ReactToPrint
+                                trigger={() => <PrimaryButton>Print this out!</PrimaryButton>}
+                                content={() => componentRef.current}
+                            />
+                        </Stack.Item>
+                        <div ref={componentRef}>
+                            <Stack.Item>
+                                <Table className={styles.table}>
+                                    <Thead className={styles.row}>
+                                        <Tr>
+                                            <Th className={styles.header}>Time</Th>
+                                            {getWeekdayHeadings()}
+                                        </Tr>
+                                    </Thead>
+                                    {getRows()}
+                                </Table>
+                            </Stack.Item>
+                        </div>
+                        <Stack.Item>
+                            <Separator />
                         </Stack.Item>
                     </Stack>
                 </>
             ) : (
-                <></>
+                <>{navigate("/")}</>
             )}
         </>
     );
