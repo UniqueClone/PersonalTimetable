@@ -7,8 +7,8 @@ import { ClassesByTime } from "../../types/Classes";
 import { NavBar } from "../NavBar/NavBar";
 import React from "react";
 import ReactToPrint from "react-to-print";
-import { getMockClasses } from "../../Mocks/MockClasses";
 import { getTimetableStyles } from "./TimetableStyles";
+import { getUserClasses } from "./Timetable.mappers";
 import { useIsAuthenticated } from "@azure/msal-react";
 import { useNavigate } from "react-router-dom";
 
@@ -16,8 +16,7 @@ const Timetable: React.FC = () => {
     const weekdays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
     const workweek = ["Mon", "Tue", "Wed", "Thu", "Fri"];
 
-    // TODO replace with API call.
-    const classes: ClassesByTime = getMockClasses();
+    const classes: ClassesByTime = getUserClasses();
 
     const times = ["9.00", "10.00", "11.00", "12.00", "13.00", "14.00", "15.00", "16.00", "17.00", "18.00"];
 
