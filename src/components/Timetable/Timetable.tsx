@@ -4,6 +4,7 @@ import { PrimaryButton, Separator, Stack, Text } from "@fluentui/react";
 import { Table, Th, Thead, Tr } from "react-super-responsive-table";
 import { Cell } from "./Cell/Cell";
 import { ClassesByTime } from "../../types/Classes";
+import { CommonSchedules } from "./CommonSchedules/CommonSchedules";
 import { NavBar } from "../NavBar/NavBar";
 import React from "react";
 import ReactToPrint from "react-to-print";
@@ -73,7 +74,9 @@ const Timetable: React.FC = () => {
                     <NavBar />
                     <Stack horizontalAlign="center" tokens={containerStackTokens}>
                         <Stack.Item>
-                            <Text variant="xxLarge">Timetable</Text>
+                            <Text variant="xxLarge" role="heading" aria-level={1}>
+                                Timetable
+                            </Text>
                         </Stack.Item>
                         <Stack.Item>
                             <Text variant="large">
@@ -87,19 +90,26 @@ const Timetable: React.FC = () => {
                                 content={() => componentRef.current}
                             />
                         </Stack.Item>
-                        <div ref={componentRef}>
-                            <Stack.Item>
-                                <Table className={styles.table}>
-                                    <Thead className={styles.row}>
-                                        <Tr>
-                                            <Th className={styles.header}>Time</Th>
-                                            {getWeekdayHeadings()}
-                                        </Tr>
-                                    </Thead>
-                                    {getRows()}
-                                </Table>
-                            </Stack.Item>
-                        </div>
+                        <Stack.Item>
+                            <Stack horizontal tokens={{ childrenGap: "1rem" }}>
+                                <Stack.Item>
+                                    <div ref={componentRef}>
+                                        <Table className={styles.table}>
+                                            <Thead className={styles.row}>
+                                                <Tr>
+                                                    <Th className={styles.header}>Time</Th>
+                                                    {getWeekdayHeadings()}
+                                                </Tr>
+                                            </Thead>
+                                            {getRows()}
+                                        </Table>
+                                    </div>
+                                </Stack.Item>
+                                <Stack.Item>
+                                    <CommonSchedules />
+                                </Stack.Item>
+                            </Stack>
+                        </Stack.Item>
                         <Stack.Item>
                             <Separator />
                         </Stack.Item>
