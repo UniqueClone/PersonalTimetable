@@ -21,17 +21,17 @@ export interface CellProps {
      * @example "TH1"
      * @example "JH6"
      */
-    location?: string;
+    room?: string;
 
     /**
-     * The Module Code.
+     * The class Code.
      * @example "CS601"
      * @example "EP200"
      */
-    module?: string;
+    class?: string;
 
     /**
-     * The Module Name.
+     * The class Name.
      * @example "Introduction to Computer Science"
      */
     name?: string;
