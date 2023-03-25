@@ -16,8 +16,8 @@ import { useIsAuthenticated } from "@azure/msal-react";
 import { useNavigate } from "react-router-dom";
 
 export const Timetable: FC = () => {
-    const weekdays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-    const workweek = ["Mon", "Tue", "Wed", "Thu", "Fri"];
+    const times = AppConfig.times;
+    const workweek = AppConfig.workweek;
 
     // Used for printing component.
     const componentRef = useRef(null);
