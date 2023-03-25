@@ -1,5 +1,5 @@
 import { Theme, mergeStyleSets } from "@fluentui/react";
-import { CellProps } from "./Cell/CellProps";
+import { CellProps } from "../Cell/CellProps";
 
 /**
  * Get class names for the Timetable.
@@ -22,12 +22,13 @@ export const getTimetableStyles = (theme?: Theme, cellProps?: CellProps) => {
             // flex: 1
         },
 
-        location: {
-            fontSize: "0.8rem"
+        room: {
+            fontSize: "0.8rem",
+            fontWeight: "600"
             // padding: "0.2rem 0 0.2rem 0"
         },
 
-        module: {
+        class: {
             fontWeight: "bold",
             padding: "0.2rem 0 0.2rem 0"
         },
@@ -39,6 +40,11 @@ export const getTimetableStyles = (theme?: Theme, cellProps?: CellProps) => {
 
         table: {
             border: "1px solid black"
+            // maxWidth: "75%"
+        },
+
+        tableDiv: {
+            overflowX: "auto"
         }
     });
 };

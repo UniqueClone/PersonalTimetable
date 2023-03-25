@@ -1,66 +1,90 @@
 import "./styles.css";
+import "react-super-responsive-table/dist/SuperResponsiveTableStyle.css";
 
+import { FC, useRef, useState } from "react";
 import { PrimaryButton, Separator, Stack, Text } from "@fluentui/react";
-import { Table, Th, Thead, Tr } from "react-super-responsive-table";
-import { Cell } from "./Cell/Cell";
-import { ClassesByTime } from "../../types/Classes";
+import { combineSchedules, fillEmptyDay, fillPartialWeek, getCscTimes, getWscTimes, useWeek } from "./Timetable.mappers";
+import { AppConfig } from "../../config/AppConfig";
+import { Cell } from "../Cell/Cell";
 import { CommonSchedules } from "./CommonSchedules/CommonSchedules";
 import { NavBar } from "../NavBar/NavBar";
-import React from "react";
 import ReactToPrint from "react-to-print";
+import { Today } from "./Today";
+import { Week } from "../../types/Week";
 import { getTimetableStyles } from "./TimetableStyles";
-import { getUserClasses } from "./Timetable.mappers";
 import { useIsAuthenticated } from "@azure/msal-react";
 import { useNavigate } from "react-router-dom";
 
-const Timetable: React.FC = () => {
+export const Timetable: FC = () => {
     const weekdays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
     const workweek = ["Mon", "Tue", "Wed", "Thu", "Fri"];
 
-    const classes: ClassesByTime = getUserClasses();
-
-    const times = ["9.00", "10.00", "11.00", "12.00", "13.00", "14.00", "15.00", "16.00", "17.00", "18.00"];
-
-    const months = [
-        "January",
-        "February",
-        "March",
-        "April",
-        "May",
-        "June",
-        "July",
-        "August",
-        "September",
-        "October",
-        "November",
-        "December"
-    ];
-
-    const componentRef = React.useRef(null);
+    // Used for printing component.
+    const componentRef = useRef(null);
 
     const styles = getTimetableStyles();
     const containerStackTokens = { childrenGap: 20 };
 
-    const today = new Date();
-
     const getWeekdayHeadings = () => {
-        return workweek.map(workweek => <Th className={styles.header}>{workweek}</Th>);
+        return workweek.map(workweek => <th className={styles.header}>{workweek}</th>);
     };
 
-    const cellRow = (classes: ClassesByTime, cur_time: string) => {
+    // TODO remove test and Test
+    type Test = { [index: string]: Week };
+    const test: Test = {
+        CSC: getCscTimes(),
+        WSC: getWscTimes()
+    };
+
+    const [selectedKeys, setSelectedKeys] = useState<string[]>([]);
+    let combined: Week = fillPartialWeek({ mon: fillEmptyDay() });
+
+    // Renders each selected class in the priority order they are selected.
+    for (const key in selectedKeys) {
+        combined = key ? combineSchedules(combined, test[selectedKeys[key]]) : combined;
+    }
+
+    const userClasses = useWeek(0); // TODO implement user ID
+    const renderClasses = useRef(userClasses);
+
+    renderClasses.current = combineSchedules(userClasses, combined);
+
+    /**
+     * This function takes in a week and a time and returns a list of renderable cells for that time.
+     * The cells are returned as a list to be rendered as a table row.
+     * @param week is the schedule.
+     * @param curTime is the current time slot.
+     * @returns an Array of renderable Cells.
+     */
+    const cellRow = (week: Week, curTime: number) => {
+        const color1 = "#75a97e";
+        const color2 = "#a975a0";
+
+        let color: string;
+        if (curTime % 2 === 0) {
+            color = color1;
+        } else {
+            color = color2;
+        }
+
         const cells: [JSX.Element] = [<></>];
-        Object.entries(classes[cur_time]).forEach(([key, value], index) => {
-            cells[index] = <Cell module={value.module} location={value.location} color={value.color} content={cur_time} />;
+        Object.entries(week).forEach(([key, day], index) => {
+            const slot = day[curTime];
+            if (slot.class !== "") {
+                cells[index] = <Cell class={slot.class} room={slot.room} color={slot.color ? slot.color : color} />;
+            } else {
+                cells[index] = <Cell color="white" />;
+            }
         });
-        return cells ? cells : <></>;
+        return cells;
     };
 
     const getRows = () => {
         return times.map(time => (
-            <Tr className={styles.row}>
-                <Th>{time}</Th>
-                {cellRow(classes, time)}
-            </Tr>
+            <tr className={styles.row}>
+                <th>{time}</th>
+                {cellRow(renderClasses.current, times.indexOf(time))}
+            </tr>
         ));
     };
 
@@ -78,12 +102,7 @@ const Timetable: React.FC = () => {
                                 Timetable
                             </Text>
                         </Stack.Item>
-                        <Stack.Item>
-                            <Text variant="large">
-                                {"Today is: "}
-                                {weekdays[today.getDay()]} {today.getDate()} {months[today.getMonth()]} {today.getFullYear()}
-                            </Text>
-                        </Stack.Item>
+                        <Today />
                         <Stack.Item>
                             <ReactToPrint
                                 trigger={() => <PrimaryButton>Print this out!</PrimaryButton>}
@@ -91,22 +110,22 @@ const Timetable: React.FC = () => {
                             />
                         </Stack.Item>
                         <Stack.Item>
-                            <Stack horizontal tokens={{ childrenGap: "1rem" }}>
-                                <Stack.Item>
-                                    <div ref={componentRef}>
-                                        <Table className={styles.table}>
-                                            <Thead className={styles.row}>
-                                                <Tr>
-                                                    <Th className={styles.header}>Time</Th>
+                            <Stack wrap horizontal tokens={{ childrenGap: "1rem" }}>
+                                <Stack.Item grow>
+                                    <div ref={componentRef} className={styles.tableDiv}>
+                                        <table className={styles.table}>
+                                            <thead className={styles.row}>
+                                                <tr>
+                                                    <th className={styles.header}>Time</th>
                                                     {getWeekdayHeadings()}
-                                                </Tr>
-                                            </Thead>
+                                                </tr>
+                                            </thead>
                                             {getRows()}
-                                        </Table>
+                                        </table>
                                     </div>
                                 </Stack.Item>
                                 <Stack.Item>
-                                    <CommonSchedules />
+                                    <CommonSchedules selectedKeys={selectedKeys} setSelectedKeys={setSelectedKeys} />
                                 </Stack.Item>
                             </Stack>
                         </Stack.Item>
@@ -121,5 +140,3 @@ const Timetable: React.FC = () => {
         </>
     );
 };
-
-export default Timetable;
