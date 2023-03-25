@@ -1,5 +1,6 @@
 export type Class = {
-    module: string;
-    location: string;
-    color: string;
+    class: string;
+    room: string;
+    color?: string;
+    lecturer?: string;
 };

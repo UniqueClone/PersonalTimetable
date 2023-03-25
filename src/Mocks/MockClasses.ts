@@ -4,272 +4,547 @@ export const getMockClasses = (): ClassesByTime => {
     return {
         "9.00": [
             {
-                module: "CS101",
-                location: "JH1",
+                class: "CS101",
+                room: "JH1",
                 color: "lightgreen"
             },
             {
-                module: "CS102",
-                location: "JH2",
+                class: "CS102",
+                room: "JH2",
                 color: "lightblue"
             },
             {
-                module: "CS103",
-                location: "JH3",
+                class: "CS103",
+                room: "JH3",
                 color: "pink"
             },
             {
-                module: "CS104",
-                location: "JH4",
+                class: "CS104",
+                room: "JH4",
                 color: "orange"
             },
             {
-                module: "CS105",
-                location: "JH5",
+                class: "CS105",
+                room: "JH5",
                 color: "lightyellow"
             }
         ],
         "10.00": [
             {
-                module: "CS106",
-                location: "JH1",
+                class: "CS106",
+                room: "JH1",
                 color: "lightgreen"
             },
             {
-                module: "CS107",
-                location: "JH2",
+                class: "CS107",
+                room: "JH2",
                 color: "lightblue"
             },
             {
-                module: "CS108",
-                location: "JH3",
+                class: "CS108",
+                room: "JH3",
                 color: "pink"
             },
             {
-                module: "CS109",
-                location: "JH4",
+                class: "CS109",
+                room: "JH4",
                 color: "orange"
             },
             {
-                module: "CS110",
-                location: "JH5",
+                class: "CS110",
+                room: "JH5",
                 color: "lightyellow"
             }
         ],
         "11.00": [
             {
-                module: "CS111",
-                location: "JH1",
+                class: "CS111",
+                room: "JH1",
                 color: "lightgreen"
             },
             {
-                module: "CS112",
-                location: "JH2",
+                class: "CS112",
+                room: "JH2",
                 color: "lightblue"
             },
             {
-                module: "CS113",
-                location: "JH3",
+                class: "CS113",
+                room: "JH3",
                 color: "pink"
             },
             {
-                module: "CS114",
-                location: "JH4",
+                class: "CS114",
+                room: "JH4",
                 color: "orange"
             },
             {
-                module: "CS115",
-                location: "JH5",
+                class: "CS115",
+                room: "JH5",
                 color: "lightyellow"
             }
         ],
         "12.00": [
             {
-                module: "CS116",
-                location: "JH1",
+                class: "CS116",
+                room: "JH1",
                 color: "lightgreen"
             },
             {
-                module: "CS117",
-                location: "JH2",
+                class: "CS117",
+                room: "JH2",
                 color: "lightblue"
             },
             {
-                module: "CS118",
-                location: "JH3",
+                class: "CS118",
+                room: "JH3",
                 color: "pink"
             },
             {
-                module: "CS119",
-                location: "JH4",
+                class: "CS119",
+                room: "JH4",
                 color: "orange"
             },
             {
-                module: "CS120",
-                location: "JH5",
+                class: "CS120",
+                room: "JH5",
                 color: "lightyellow"
             }
         ],
         "13.00": [
             {
-                module: "CS121",
-                location: "JH1",
+                class: "CS121",
+                room: "JH1",
                 color: "lightgreen"
             },
             {
-                module: "CS122",
-                location: "JH2",
+                class: "CS122",
+                room: "JH2",
                 color: "lightblue"
             },
             {
-                module: "CS123",
-                location: "JH3",
+                class: "CS123",
+                room: "JH3",
                 color: "pink"
             },
             {
-                module: "CS124",
-                location: "JH4",
+                class: "CS124",
+                room: "JH4",
                 color: "orange"
             },
             {
-                module: "CS125",
-                location: "JH5",
+                class: "CS125",
+                room: "JH5",
                 color: "lightyellow"
             }
         ],
         "14.00": [
             {
-                module: "CS126",
-                location: "JH1",
+                class: "CS126",
+                room: "JH1",
                 color: "lightgreen"
             },
             {
-                module: "CS127",
-                location: "JH2",
+                class: "CS127",
+                room: "JH2",
                 color: "lightblue"
             },
             {
-                module: "CS128",
-                location: "JH3",
+                class: "CS128",
+                room: "JH3",
                 color: "pink"
             },
             {
-                module: "CS129",
-                location: "JH4",
+                class: "CS129",
+                room: "JH4",
                 color: "orange"
             },
             {
-                module: "CS130",
-                location: "JH5",
+                class: "CS130",
+                room: "JH5",
                 color: "lightyellow"
             }
         ],
         "15.00": [
             {
-                module: "CS131",
-                location: "JH1",
+                class: "CS131",
+                room: "JH1",
                 color: "lightgreen"
             },
             {
-                module: "CS132",
-                location: "JH2",
+                class: "CS132",
+                room: "JH2",
                 color: "lightblue"
             },
             {
-                module: "CS133",
-                location: "JH3",
+                class: "CS133",
+                room: "JH3",
                 color: "pink"
             },
             {
-                module: "CS134",
-                location: "JH4",
+                class: "CS134",
+                room: "JH4",
                 color: "orange"
             },
             {
-                module: "CS135",
-                location: "JH5",
+                class: "CS135",
+                room: "JH5",
                 color: "lightyellow"
             }
         ],
         "16.00": [
             {
-                module: "CS136",
-                location: "JH1",
+                class: "CS136",
+                room: "JH1",
                 color: "lightgreen"
             },
             {
-                module: "CS137",
-                location: "JH2",
+                class: "CS137",
+                room: "JH2",
                 color: "lightblue"
             },
             {
-                module: "CS138",
-                location: "JH3",
+                class: "CS138",
+                room: "JH3",
                 color: "pink"
             },
             {
-                module: "CS139",
-                location: "JH4",
+                class: "CS139",
+                room: "JH4",
                 color: "orange"
             },
             {
-                module: "CS140",
-                location: "JH5",
+                class: "CS140",
+                room: "JH5",
                 color: "lightyellow"
             }
         ],
         "17.00": [
             {
-                module: "CS141",
-                location: "JH1",
+                class: "CS141",
+                room: "JH1",
                 color: "lightgreen"
             },
             {
-                module: "CS142",
-                location: "JH2",
+                class: "CS142",
+                room: "JH2",
                 color: "lightblue"
             },
             {
-                module: "CS143",
-                location: "JH3",
+                class: "CS143",
+                room: "JH3",
                 color: "pink"
             },
             {
-                module: "CS144",
-                location: "JH4",
+                class: "CS144",
+                room: "JH4",
                 color: "orange"
             },
             {
-                module: "CS145",
-                location: "JH5",
+                class: "CS145",
+                room: "JH5",
                 color: "lightyellow"
             }
         ],
         "18.00": [
             {
-                module: "CS146",
-                location: "JH1",
+                class: "CS146",
+                room: "JH1",
                 color: "lightgreen"
             },
             {
-                module: "CS147",
-                location: "JH2",
+                class: "CS147",
+                room: "JH2",
                 color: "lightblue"
             },
             {
-                module: "CS148",
-                location: "JH3",
+                class: "CS148",
+                room: "JH3",
                 color: "pink"
             },
             {
-                module: "CS149",
-                location: "JH4",
+                class: "CS149",
+                room: "JH4",
                 color: "orange"
             },
             {
-                module: "CS150",
-                location: "JH5",
+                class: "CS150",
+                room: "JH5",
                 color: "lightyellow"
+            }
+        ]
+    };
+};
+
+export const getMockClassesWithGaps = (): ClassesByTime => {
+    return {
+        "9.00": [
+            {
+                class: "CS101",
+                room: "JH1",
+                color: "lightgreen"
+            },
+            {
+                class: "CS102",
+                room: "JH2",
+                color: "lightblue"
+            },
+            {
+                class: "CS103",
+                room: "JH3",
+                color: "pink"
+            },
+            {
+                class: "",
+                room: "",
+                color: ""
+            },
+            {
+                class: "",
+                room: "",
+                color: ""
+            }
+        ],
+        "10.00": [
+            {
+                class: "CS106",
+                room: "JH1",
+                color: "lightgreen"
+            },
+            {
+                class: "CS107",
+                room: "JH2",
+                color: "lightblue"
+            },
+            {
+                class: "",
+                room: "",
+                color: ""
+            },
+            {
+                class: "CS109",
+                room: "JH4",
+                color: "orange"
+            },
+            {
+                class: "CS110",
+                room: "JH5",
+                color: "lightyellow"
+            }
+        ],
+        "11.00": [
+            {
+                class: "CS111",
+                room: "JH1",
+                color: "lightgreen"
+            },
+            {
+                class: "",
+                room: "",
+                color: ""
+            },
+            {
+                class: "CS113",
+                room: "JH3",
+                color: "pink"
+            },
+            {
+                class: "",
+                room: "",
+                color: ""
+            },
+            {
+                class: "CS115",
+                room: "JH5",
+                color: "lightyellow"
+            }
+        ],
+        "12.00": [
+            {
+                class: "CS116",
+                room: "JH1",
+                color: "lightgreen"
+            },
+            {
+                class: "CS117",
+                room: "JH2",
+                color: "lightblue"
+            },
+            {
+                class: "",
+                room: "",
+                color: ""
+            },
+            {
+                class: "CS119",
+                room: "JH4",
+                color: "orange"
+            },
+            {
+                class: "",
+                room: "",
+                color: ""
+            }
+        ],
+        "13.00": [
+            {
+                class: "CS121",
+                room: "JH1",
+                color: "lightgreen"
+            },
+            {
+                class: "",
+                room: "",
+                color: ""
+            },
+            {
+                class: "",
+                room: "",
+                color: ""
+            },
+            {
+                class: "CS124",
+                room: "JH4",
+                color: "orange"
+            },
+            {
+                class: "CS125",
+                room: "JH5",
+                color: "lightyellow"
+            }
+        ],
+        "14.00": [
+            {
+                class: "",
+                room: "",
+                color: ""
+            },
+            {
+                class: "",
+                room: "",
+                color: ""
+            },
+            {
+                class: "CS128",
+                room: "JH3",
+                color: "pink"
+            },
+            {
+                class: "",
+                room: "",
+                color: ""
+            },
+            {
+                class: "",
+                room: "",
+                color: ""
+            }
+        ],
+        "15.00": [
+            {
+                class: "CS131",
+                room: "JH1",
+                color: "lightgreen"
+            },
+            {
+                class: "CS132",
+                room: "JH2",
+                color: "lightblue"
+            },
+            {
+                class: "CS133",
+                room: "JH3",
+                color: "pink"
+            },
+            {
+                class: "",
+                room: "",
+                color: ""
+            },
+            {
+                class: "CS135",
+                room: "JH5",
+                color: "lightyellow"
+            }
+        ],
+        "16.00": [
+            {
+                class: "CS136",
+                room: "JH1",
+                color: "lightgreen"
+            },
+            {
+                class: "CS137",
+                room: "JH2",
+                color: "lightblue"
+            },
+            {
+                class: "",
+                room: "",
+                color: ""
+            },
+            {
+                class: "",
+                room: "",
+                color: ""
+            },
+            {
+                class: "",
+                room: "",
+                color: ""
+            }
+        ],
+        "17.00": [
+            {
+                class: "CS141",
+                room: "JH1",
+                color: "lightgreen"
+            },
+            {
+                class: "CS142",
+                room: "JH2",
+                color: "lightblue"
+            },
+            {
+                class: "CS143",
+                room: "JH3",
+                color: "pink"
+            },
+            {
+                class: "CS144",
+                room: "JH4",
+                color: "orange"
+            },
+            {
+                class: "",
+                room: "",
+                color: ""
+            }
+        ],
+        "18.00": [
+            {
+                class: "",
+                room: "",
+                color: ""
+            },
+            {
+                class: "",
+                room: "",
+                color: ""
+            },
+            {
+                class: "",
+                room: "",
+                color: ""
+            },
+            {
+                class: "",
+                room: "",
+                color: ""
+            },
+            {
+                class: "",
+                room: "",
+                color: ""
             }
         ]
     };
