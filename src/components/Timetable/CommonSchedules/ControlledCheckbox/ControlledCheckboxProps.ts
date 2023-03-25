@@ -7,4 +7,8 @@ export interface ControlledCheckboxProps {
      * @example "CSC"
      */
     name: string;
+
+    isChecked: boolean;
+
+    setIsChecked: (value: boolean) => void;
 }
