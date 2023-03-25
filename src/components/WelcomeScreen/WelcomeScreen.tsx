@@ -1,9 +1,9 @@
 import { FontWeights, IStackStyles, IStackTokens, ITextStyles, Panel, PrimaryButton, Separator, Stack, Text } from "@fluentui/react";
-import React, { useState } from "react";
 import LoginButton from "../LoginButton/LoginButton";
 import { NavBar } from "../NavBar/NavBar";
 import { getWelcomeScreenStyles } from "./WelcomeScreenStyles";
 import { useIsAuthenticated } from "@azure/msal-react";
+import { useState } from "react";
 
 export const WelcomeScreen: React.FC = () => {
     const [panelVisible, setPanelVisible] = useState(false);

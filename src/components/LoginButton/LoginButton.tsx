@@ -1,6 +1,5 @@
 import { LoginButtonProps } from "./LoginButtonProps";
 import { PrimaryButton } from "@fluentui/react";
-import React from "react";
 import { loginRequest } from "../../authConfig";
 import { redirect } from "react-router-dom";
 import { useIsAuthenticated } from "@azure/msal-react";
